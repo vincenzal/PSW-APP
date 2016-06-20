@@ -3,7 +3,6 @@
 	$( document ).ready( function() {
 		$( '#signit' ).drawCanvasField({
 			dotSize:1,
-				
 		});	
 	});	
 
