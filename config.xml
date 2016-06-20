@@ -9,16 +9,18 @@
   <preference name="fullscreen" value="true" />
   <preference name="orientation" value="landscape" />
   
-  <plugin name="cordova-plugin-whitelist" source="npm" spec="~1.2.1"/>
+  <!-- <plugin name="cordova-plugin-whitelist" source="npm" spec="~1.2.1"/> -->
   <plugin name="cordova-plugin-statusbar" source="npm" spec="~2.1.2"/>
   <plugin name="cordova-plugin-device" source="npm" spec="~1.1.1"/>
-
+  
   <icon src="images/icon.png"/>
 
   <platform name="ios">
   </platform>
   
+  <access origin="http://*"/>
   <access origin="https://*" />
+  <allow-intent href="http://*/*"/>
   <allow-intent href="https://*/*"/>
 
 </widget>
