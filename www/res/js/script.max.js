@@ -1,12 +1,14 @@
 (function($){ 
 	"use strict";	
 	
-	var adminObj, appVersion = '0.9.0';
+	var adminObj, appVersion = '0.9.1';
 	var basicLoaded = false; 
 	var htmlBasic = '/basic.php';
 	var cssBasic = '/styles.php';
 	var jsBasic = '/scripts.php';
 	var apiBasic = '/api/testconn.php';
+	
+	$.ajaxSetup( { cache:false } );
 	
 	$( document ).ready( function() {
 		toastr.options.newestOnTop = false;
