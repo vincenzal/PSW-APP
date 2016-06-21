@@ -1,8 +1,12 @@
 (function($){ 
 	"use strict";	
 	
-	var adminObj, appVersion = '1.0.0';
+	var adminObj, appVersion = '0.9.0';
 	var basicLoaded = false; 
+	var htmlBasic = '/basic.php';
+	var cssBasic = '/styles.php';
+	var jsBasic = '/scripts.php';
+	var apiBasic = '/api/testconn.php';
 	
 	$( document ).ready( function() {
 		toastr.options.newestOnTop = false;
@@ -15,16 +19,13 @@
 
 		//check if admin settings are made
 		adminObj =  localStorage.getItem( 'admin' );
+		
 		var bodyID = $('body').attr('id');
 		if ( adminObj === null && bodyID !== 'page-adminsettings' ) {
 			//toastr.info('no admin settings available');
 			loadPage( 'adminsettings' );
 			return;
-		}
-		
-		if ( adminObj === null ) {
-			$( '#psw_version_server' ).hide();
-		}		
+		}				
 				
 		if ( typeof StatusBar !== 'undefined' ) { StatusBar.hide(); }
 		document.addEventListener("resume", function() {						
@@ -44,14 +45,20 @@
 			case 'page-index':
 				adminObj = JSON.parse( adminObj );			
 				testRequest(adminObj.urlAPi,
-					function(appVersionServer) { 
+					function( appVersionServer, appiOSStore ) { 
 						if ( versionCompare( appVersion, appVersionServer )  < 0 ) {
 							toastr.error( 'APP Update available' );
+							sessionStorage.setItem( 'iOSStore', appiOSStore );
+							sessionStorage.setItem( 'appVersionServer', appVersionServer );
+							setTimeout( function() { loadPage( 'adminsettings' ); }, 1000 );
 						} else {
 							loadContent();
 						}	
 					},
-					function() {loadPage( 'adminsettings' );}
+					function() { 
+						toastr.error( '500: Server Configuration Error' );
+						setTimeout( function() { loadPage( 'adminsettings' ); }, 1000 );
+					}
 				);
 				
 				$( document ).on( 'click', '#app_refresh', function() {
@@ -69,7 +76,27 @@
 				});
 				
 			break;
-			case 'page-adminsettings':			
+			case 'page-adminsettings':	
+			
+				if ( adminObj === null ) {
+					$( '#psw_version_server' ).hide();
+				} else {
+					var iOSLink = sessionStorage.getItem( 'iOSStore' );
+					var appVersionServer = sessionStorage.getItem( 'appVersionServer' );
+					
+					if ( appVersionServer === null ) {
+						loadPage( 'index' );	
+					}
+					
+					sessionStorage.clear();
+					$( '#psw_version_server strong' ).html( appVersionServer ).parent().append( iOSLink );
+					$( document ).on( 'click', '#psw_version_server a', function(e) {
+						e.preventDefault();
+						window.open( this.href, '_system' );	
+					});
+					
+				}
+					
 				$( document ).on( 'submit', '#save', function() {
 					var masterPWD = $( '#master' ).val();
 					var urlAPi = $( '#apiurl' ).val();
@@ -107,15 +134,15 @@
 	var loadContent = function() {
 		// CSS > HTML > JS
 		$.get({
-			'url':adminObj.urlAPi+'/styles.php',
+			'url':adminObj.urlAPi+cssBasic,
 			success:function(d){
 				$( 'head' ).append( $( '<style>' ).html( d ) );
 				$.get({
-					'url':adminObj.urlAPi+'/basic.php',
+					'url':adminObj.urlAPi+htmlBasic,
 					success:function(d){
-						$( '#pagecontent' ).html( d );
+						$( '#pagecontent' ).html( d );						
 						$.get({
-							'url':adminObj.urlAPi+'/scripts.php',
+							'url':adminObj.urlAPi+jsBasic,
 							success:function() {
 								basicLoaded = true;
 							},
@@ -144,15 +171,22 @@
 	}
 	
 	var testRequest = function( url, cbsuccess, cberror ) {
-		if ( url.substr(0,5) != 'http:' &&  url.substr(0,6) != 'https:' ) { cberror(); return false; }
+		if ( url == '' ) {	
+			localStorage.clear();
+			top.location.reload();	
+			return true;	
+		}
+		if ( url.substr(0,5) != 'http:' &&  url.substr(0,6) != 'https:' ) { 			
+			cberror(); return false; 
+		}
 		$.ajax({
-			'url':url+'/index.php',
+			'url':url+apiBasic,
 			'type':'POST',
 			'data':{appVersion:appVersion},
 			'dataType':'json',
 			success:function(d){
 				if ( d === '' ) cberror();
-				else cbsuccess(d.appVersion);
+				else cbsuccess(d.appVersion, d.iosStore);
 			},
 			error:function(d) {
 				cberror();
