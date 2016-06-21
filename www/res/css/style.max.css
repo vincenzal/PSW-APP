@@ -1,0 +1,33 @@
+/* vincenz.at */
+#save { 
+	margin:0 0 0 10%; 
+	max-width:430px; 
+	padding:15px; 
+}
+#save .form-control {
+    box-sizing: border-box;
+    font-size: 16px;
+    height: auto;
+    padding: 10px;
+    position: relative;
+}
+#save #apiurl {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    margin-bottom: -1px;
+}
+#save #master {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    margin-bottom: 10px;
+}
+#resetbuttons {
+	padding-top:20px; 
+	display:none; 
+}
+#resetbuttons button { 
+	margin-right:20px; 
+}
+#pagecontent { 
+	display:none;
+}
