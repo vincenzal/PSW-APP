@@ -1,7 +1,7 @@
 (function($){ 
 	"use strict";	
 	
-	var adminObj, appVersion = '0.9.3';
+	var adminObj, appVersion = '0.9.4';
 	var basicLoaded = false; 
 	var htmlBasic = '/basic.php';
 	var cssBasic = '/styles.php';
@@ -59,7 +59,8 @@
 					},
 					function() { 
 						toastr.error( '500: Server Configuration Error' );
-						setTimeout( function() { loadPage( 'adminsettings' ); }, 1000 );
+						$( '#resetbuttons' ).show();
+						//setTimeout( function() { loadPage( 'adminsettings' ); }, 1000 );
 					}
 				);
 				
