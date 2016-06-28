@@ -7,32 +7,45 @@
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
     <meta http-equiv="Content-Security-Policy" content="" />
     <meta name="mobile-web-app-capable" content="yes">
-	<title>PSW - Patientensoftware</title>
+	<title>PATIENTEN SOFTWARE Verwaltungstool</title>
  
 	<!-- STYLES -->    
     <link rel="stylesheet" href="res/css/normalize.min.css">
     <link rel="stylesheet" href="res/css/bootstrap.min.css">
+    <link rel="stylesheet" href="res/css/font.css">
     <link rel="stylesheet" href="res/css/style.max.css">
     
     <!-- SCRIPTS HEADER -->
     <script type="text/javascript" src="cordova.js"></script>
     <script src="res/js/jquery-2.2.3.min.js"></script>
-    <script src="res/js/bootstrap.min.js"></script>
+    <script src="res/js/bootstrap.min.js"></script>    
+    
 </head>
 
 <body id="page-index">
 <div class="container">	
-	<div id="resetbuttons">
-    	<p>Auf Grund eines Verbindungsproblems konnten Daten nicht korrekt geladen werden.<br>Bitte Laden Sie den Inhalt erneut.</p>
-    	<button class="btn btn-lg btn-success" id="app_refresh">Refresh APP</button>
-        <hr>
-        <p>Zurücksetzen der APP Basiseinstellungen.<br>Diese Option ist nur für Administratoren verfügbar.</p>
-        <form class="form-inline">
-        <div class="form-group">
-        <input type="password" name="master" id="master" placeholder="Passwort"  class="form-control">
-        <button class="btn btn-danger" id="app_reset">Reset APP</button>
+	<div id="resetbuttons" class="appcontainer">
+    	<div class="row">
+        	<div class="col-sm-9">
+    	<p>Auf Grund eines Verbindungsproblems konnten Daten nicht korrekt geladen werden. Bitte Laden Sie den Inhalt erneut.</p>
+        	</div>
+            <div class="col-sm-3">
+		    	<button class="btn btn-lg btn-primary" id="app_refresh">Refresh</button>
+            </div>
         </div>
-        </form>
+    	<header class="row">
+        	<img src="images/PS-Logo-Text-Dark.svg">        
+        </header> 
+        <div class="row centered" >       
+            <p>Zurücksetzen der APP Basiseinstellungen.<br>Diese Option ist nur für Administratoren verfügbar.</p>
+            <form>
+                <input type="password" name="master" id="master" placeholder="Passwort"  class="form-control">
+                <button class="btn btn-lg btn-danger" id="app_reset">Reset APP</button>
+            </form>
+		</div>            
+         <footer>
+        	 PATIENTEN SOFTWARE <span class="trenner"></span> www.patientenverwaltung.at <span class="trenner"></span> office@patientenverwaltung.at
+        </footer>
     </div>    
     <div id="pagecontent"></div>
 </div>

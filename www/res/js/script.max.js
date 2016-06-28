@@ -1,14 +1,21 @@
 (function($){ 
 	"use strict";	
 	
-	var adminObj, appVersion = '0.9.4';
+	var adminObj, appVersion = '0.9.5';
 	var basicLoaded = false; 
 	var htmlBasic = '/basic.php';
 	var cssBasic = '/styles.php';
 	var jsBasic = '/scripts.php';
 	var apiBasic = '/api/testconn.php';
+	var errorMessage = {
+		masterPass: '101: Master Passwort falsch.', /* Master Passwort falsch */	
+		configError:'400: Server nicht erreichbar.', /* apiBasic Request Error */
+		connection: '404: Verbindungsprobleme', /* Basis Container can not be loaded */
+		update: 	'405: APP Update available', /* new version available */
+		success: 	'URL gespeichert.' /* URL saved and reachable */		
+	};	
 	
-	$.ajaxSetup( { cache:false } );
+	$.ajaxSetup( { cache:false, timeout:10000 } );
 	
 	$( document ).ready( function() {
 		toastr.options.newestOnTop = false;
@@ -17,6 +24,11 @@
 	});	
 	
 	var onDeviceReady = function() {					
+		
+		/* add overlayAJAXLoader */
+		$( 'body' ).append( $( '<div id="overlayAJAXLoader"><span></span></div>' ) );
+		
+		
 		$( '#psw_version_app' ).html( appVersion );
 
 		//check if admin settings are made
@@ -49,7 +61,7 @@
 				testRequest(adminObj.urlAPi,
 					function( appVersionServer, appiOSStore ) { 
 						if ( versionCompare( appVersion, appVersionServer )  < 0 ) {
-							toastr.error( 'APP Update available' );
+							toastr.error( errorMessage.update );
 							sessionStorage.setItem( 'iOSStore', appiOSStore );
 							sessionStorage.setItem( 'appVersionServer', appVersionServer );
 							setTimeout( function() { loadPage( 'adminsettings' ); }, 1000 );
@@ -58,7 +70,7 @@
 						}	
 					},
 					function() { 
-						toastr.error( '500: Server Configuration Error' );
+						toastr.error( errorMessage.configError );
 						$( '#resetbuttons' ).show();
 						//setTimeout( function() { loadPage( 'adminsettings' ); }, 1000 );
 					}
@@ -74,7 +86,7 @@
 						localStorage.clear();
 						top.location.reload();
 					} else {
-						toastr.error('Error: Master Passwort falsch.');
+						toastr.error( errorMessage.masterPass );
 					}
 				});
 				
@@ -92,7 +104,7 @@
 					}
 					
 					sessionStorage.clear();
-					$( '#psw_version_server strong' ).html( appVersionServer ).parent().append( iOSLink );
+					$( '#psw_version_server strong' ).html( appVersionServer ).parent().parent().parent().next().append( iOSLink );
 					$( document ).on( 'click', '#psw_version_server a', function(e) {
 						e.preventDefault();
 						window.open( this.href, '_system' );	
@@ -106,17 +118,17 @@
 					if ( MD5(MD5(masterPWD)) === mPWD ) {
 						testRequest(urlAPi,
 							function() {
-								toastr.success('URL gespeichert.');
+								toastr.success( errorMessage.success );
 								setTimeout( function() {
 									localStorage.setItem( 'admin', JSON.stringify({ urlAPi: urlAPi }) );
 									loadPage( 'index' );
 								}, 1000 );
 							},
 							function() { 
-								toastr.error('Error: Keine Verbindung zum angegeben Host möglich.');
+								toastr.error( errorMessage.configError );
 							} )
 					} else {
-						toastr.error('Error: Master Passwort falsch.');
+						toastr.error( errorMessage.masterPass );
 					}
 				});
 			break;
@@ -136,6 +148,7 @@
 
 	var loadContent = function() {
 		// CSS > HTML > JS
+		ajaxLoader(true);		
 		$.get({
 			'url':adminObj.urlAPi+cssBasic,
 			success:function(d){
@@ -147,19 +160,23 @@
 						$.get({
 							'url':adminObj.urlAPi+jsBasic,
 							success:function() {
+								ajaxLoader(false);	
 								basicLoaded = true;
 							},
 							error:function() {
+								ajaxLoader(false);									
 								connectionError();
 							}
 						});							
 					},
 					error:function() {
+						ajaxLoader(false);							
 						connectionError();
 					}
 				});
 			},
 			error:function() {
+				ajaxLoader(false);
 				connectionError();
 			}
 		});
@@ -168,7 +185,7 @@
 	};		
 	
 	var connectionError = function() {
-		toastr.error( '500: Verbindungsprobleme' );
+		toastr.error( errorMessage.connection );
 		//RELOAD or ADMINSETTINGS
 		$( '#resetbuttons' ).show();
 	}
@@ -182,16 +199,19 @@
 		if ( url.substr(0,5) != 'http:' &&  url.substr(0,6) != 'https:' ) { 			
 			cberror(); return false; 
 		}
+		ajaxLoader(true);
 		$.ajax({
 			'url':url+apiBasic,
 			'type':'POST',
 			'data':{appVersion:appVersion},
 			'dataType':'json',
 			success:function(d){
+				ajaxLoader(false);		
 				if ( d === '' ) cberror();
 				else cbsuccess(d.appVersion, d.iosStore);
 			},
 			error:function(d) {
+				ajaxLoader(false);						
 				cberror();
 			}
 		})
@@ -223,6 +243,21 @@
 		}
 		return (v1parts.length < v2parts.length) ? -1 : 1;
 	};	
+
+	/*
+	*	
+	*	AJAX Loader Overlay
+	*
+	*/	
+	var ajaxLoader = function( b ) {		
+		if ( b ) {
+			$( '#overlayAJAXLoader' ).show();	
+		} else {
+			$( '#overlayAJAXLoader' ).hide();	
+		}
+			
+	}
+	$.ajaxLoader = ajaxLoader;
 	
 	var mPWD = '3a19534632acd7287723ba25b38db7b8'; 
 }(jQuery));

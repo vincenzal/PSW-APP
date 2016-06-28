@@ -1,33 +1,162 @@
 /* vincenz.at */
-#save { 
-	margin:0 0 0 10%; 
-	max-width:430px; 
+body { 
+	background:#96a5ba;
+	color:#ffffff;
+	font-family:'OpenS', Helvetica, sans-serif;
+}
+.centered {
+	text-align:center;	
+}
+#save {
+	padding-top:45px;	
+}
+.appcontainer { 
+	margin:0 auto;
+	max-width:750px; 
 	padding:15px; 
 }
-#save .form-control {
+.appcontainer header {
+	text-align:center;
+}
+.appcontainer header img {
+	height:300px;
+	width:400px;
+}
+.appcontainer h2 {
+	text-transform:uppercase;	
+	font-size:24px;
+	margin-top:12px;
+}
+.appcontainer p {
+	font-size:18px;	
+}
+#save .row {
+	margin-bottom:50px; 	
+}
+.appcontainer .row {
+	margin-bottom:30px; 	
+}
+.appcontainer footer {
+	text-align:center;
+	opacity:0.6;
+	margin-top:50px;	
+}
+.appcontainer .form-control::placeholder {
+	color:#ffffff;
+	opacity:0.8;
+		
+}
+.appcontainer .form-control::-webkit-input-placeholder {
+	color:#ffffff;	
+	opacity:0.8;	
+}
+.appcontainer .form-control::-moz-placeholder {
+	color:#ffffff;
+	opacity:0.8;
+}
+.appcontainer .form-control {
     box-sizing: border-box;
-    font-size: 16px;
+    font-size: 18px;
     height: auto;
     padding: 10px;
     position: relative;
+	background:#96a5ba;
+	border:1px solid #ffffff;
+	color:#ffffff;
+	border-radius:10px;
+	box-shadow:none;
 }
-#save #apiurl {
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-    margin-bottom: -1px;
+.appcontainer .btn-primary {
+	background:rgba(223,228,234,1);
+	color:#96a5ba;
+	border-color:#fff;
+	text-transform:uppercase;
+	font-weight:bold;
+	border-radius:10px;
 }
-#save #master {
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-    margin-bottom: 10px;
+.appcontainer .form-control:focus {
+	box-shadow:none;	
 }
+
+.appcontainer .btn-primary:hover, .appcontainer .btn-primary:focus, .appcontainer .btn-primary.active, .appcontainer .btn-primary.focus, .appcontainer .btn-primary.active:hover {	
+	background:rgba(223,228,234,0.75);
+	color:#96a5ba;
+}
+.appcontainer .btn-danger {
+	background:rgba(201,94,88,1);
+	color:#ffffff;
+	border-color:#c95e58;
+	text-transform:uppercase;
+	font-weight:bold;
+	border-radius:10px;
+}
+.appcontainer .btn-danger:hover, .appcontainer .btn-danger:focus, .appcontainer .btn-danger.active, .appcontainer .btn-danger.focus, .appcontainer .btn-danger.active:hover {	
+	background:rgba(201,94,88,0.7);
+	color:#ffffff;
+}
+.appcontainer #apiurl {
+    margin-bottom: 5px;
+}
+.appcontainer #master {
+	margin-bottom: 10px;
+}
+.trenner:before {
+	display:inline-block;
+	content:'-';	
+	margin:0 5px;
+}
+.fakecol {
+	display:inline-block;
+	width:	165px;
+}
+
 #resetbuttons {
-	padding-top:20px; 
+	padding-top:50px; 
 	display:none; 
 }
+#resetbuttons form {
+	max-width:280px;	
+	margin:30px auto 0 auto;
+}
 #resetbuttons button { 
-	margin-right:20px; 
+	width:100%;
 }
 #pagecontent { 
 	display:none;
 }
+/* TOASTR Colors */
+div.toast-error{
+	background-color:#c95e58;
+}
+
+
+/* OVERLAY */
+	#overlayAJAXLoader { 
+		position:absolute; 
+		top:0; 
+		left:0; 
+		width:100%; 
+		height:100%; 
+		text-align:center; 
+		background:rgba(0,0,0,0.8); 
+		display:none; 
+		z-index:2147483647;
+	}
+	#overlayAJAXLoader span { 
+		position:relative; 
+		top:150px; 
+		display:inline-block; 
+		width:60px; 
+		height:64px; 
+		background:url(../../images/sprites.png) no-repeat 0 0; 
+		animation:loading 1s steps(28) infinite; 
+		-webkit-animation:loading 1s steps(28) infinite;
+	}	
+	@keyframes loading {
+		0% { background-position:0 0; }	
+		100% { background-position:-1680px 0; }
+	}
+	@-webkit-keyframes loading {
+		0% { background-position:0 0; }	
+		100% { background-position:-1680px 0; }
+	}	
