@@ -7,7 +7,7 @@
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
     <meta http-equiv="Content-Security-Policy" content="" />
     <meta name="mobile-web-app-capable" content="yes">
-	<title>PSW - Adminsettings</title>
+	<title>PATIENTEN SOFTWARE Verwaltungstool - Adminstrator</title>
 
 	<!-- STYLES -->    
     <link rel="stylesheet" href="res/css/normalize.min.css">
@@ -17,22 +17,45 @@
     <!-- SCRIPTS HEADER -->
     <script type="text/javascript" src="cordova.js"></script>
     <script src="res/js/jquery-2.2.3.min.js"></script>
-    <script src="res/js/bootstrap.min.js"></script>
+    <script src="res/js/bootstrap.min.js"></script>   
+    
 </head>
 
 <body id="page-adminsettings">
 <div class="container">
     
-    <form action="?" id="save">
-    	<h2 class="">PSW - Patientenverwaltung</h2>
-        <p>installierte Version: <strong id="psw_version_app"></strong><span id="psw_version_server"><br>
-        verfügbare Version: <strong></strong></span></p>
-    	<br>
-	    <h2 class="">Administrator Settings</h2>
-        <label for="apiurl" class="sr-only">https://api.url</label><input type="text" name="apiurl" id="apiurl" placeholder="https://api.url" class="form-control" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
-        <label for="master" class="sr-only">Master Passwort</label><input type="password" name="master" id="master" placeholder="Passwort"  class="form-control">
-        <button class="btn btn-lg btn-success btn-block">Speichern</button>
+    <form action="?" id="save" class="appcontainer">
+    	<header class="row">
+        	<img src="images/PS-Logo-Text-Dark.svg">        
+        </header>  
+    
+    	<div class="row">
+        	<div class="col-sm-6">                
+                <p><span class="fakecol">installierte Version:</span> <strong id="psw_version_app"></strong>
+                <span id="psw_version_server"><br>
+                <span class="fakecol">verfügbare Version:</span> <strong></strong></span></p>
+    		</div>
+	        <div class="col-sm-6">
+            </div>
+        </div>
         
+        
+        <div class="row">
+        	<div class="col-sm-6">
+			    <h2 class="">Administrator Settings</h2>
+            </div>
+          	<div class="col-sm-6">
+                <label for="apiurl" class="sr-only">https://api.url</label><input type="text" name="apiurl" id="apiurl" placeholder="https://api.url" class="form-control" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+                <label for="master" class="sr-only">Master Passwort</label><input type="password" name="master" id="master" placeholder="Passwort"  class="form-control">
+                <button class="btn btn-lg btn-primary btn-block">Speichern</button>
+            </div>
+		</div>  
+        
+        <footer>
+        	 PATIENTEN SOFTWARE <span class="trenner"></span> www.patientenverwaltung.at <span class="trenner"></span> office@patientenverwaltung.at
+        </footer>
+        
+              
     </form>
 </div>
  <!-- SCRIPTS FOOTER -->
