@@ -34,13 +34,13 @@
     <icon src="res/icons/152.png" platform="ios" width="152" height="152"/>
     <icon src="res/icons/180.png" platform="ios" width="180" height="180"/>
 
-   <!-- <splash src="res/splash/screen_480_320.png" platform="ios" width="480" height="320"/> 
-    <splash src="res/splash/screen_960_640.png" platform="ios" width="960" height="640"/>
-    <splash src="res/splash/screen_1024_768.png" platform="ios" width="1024" height="768"/>
-    <splash src="res/splash/screen_1136_640.png" platform="ios" width="1136" height="640"/>
-    <splash src="res/splash/screen_1336_640.png" platform="ios" width="1336" height="640"/>
-    <splash src="res/splash/screen_2048_1536.png" platform="ios" width="2048" height="1536"/>
-    <splash src="res/splash/screen_2208_1242.png" platform="ios" width="2208" height="1242"/> -->
+   	<splash src="res/splash/480x320.png" platform="ios" width="480" height="320"/> 
+    <splash src="res/splash/960x640.png" platform="ios" width="960" height="640"/>
+    <splash src="res/splash/1024x768.png" platform="ios" width="1024" height="768"/>
+    <splash src="res/splash/1136x640.png" platform="ios" width="1136" height="640"/>
+    <splash src="res/splash/1336x640.png" platform="ios" width="1336" height="640"/>
+    <splash src="res/splash/2048x1536.png" platform="ios" width="2048" height="1536"/>
+    <splash src="res/splash/2208x1242.png" platform="ios" width="2208" height="1242"/> 
 
   </platform>
   
