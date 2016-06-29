@@ -1,4 +1,4 @@
-<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="at.patientenverwaltung.psw" version="0.9.5">
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="at.patientenverwaltung.psw" version="0.9.6">
   <name>Patientenverwaltung</name>
   <description>Patienten Software Verwaltungstool</description>
   <author href="http://www.patientenverwaltung.at" email="office@patientenverwaltung.at">Patientenverwaltung Team</author>
@@ -7,12 +7,12 @@
   <preference name="KeyboardDisplayRequiresUserAction" value="false" />
   
   <preference name="fullscreen" value="true" />
-  <preference name="orientation" value="landscape" />
+  <!-- <preference name="orientation" value="landscape" /> -->
   
   <plugin name="cordova-plugin-statusbar" source="npm" spec="~2.1.2"/>
   <plugin name="cordova-plugin-device" source="npm" spec="~1.1.1"/>
   <plugin name="cordova-plugin-file-transfer" source="npm" spec="~1.5.0"/>
-  <plugin name="cordova-plugin-camera" source="npm" spec="~2.1.1"/>
+  <plugin name="cordova-plugin-camera" source="npm" spec="~2.1.1"/>  
   
   <icon src="images/icon.png"/>
 

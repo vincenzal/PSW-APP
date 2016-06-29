@@ -1,13 +1,13 @@
 (function($){ 
 	"use strict";	
 	
-	var adminObj, appVersion = '0.9.5';
+	var adminObj, appVersion = '0.9.6';
 	var basicLoaded = false; 
 	var htmlBasic = '/basic.php';
 	var cssBasic = '/styles.php';
 	var jsBasic = '/scripts.php';
 	var apiBasic = '/api/testconn.php';
-	var errorMessage = {
+	window.errorMessage = {
 		masterPass: '101: Master Passwort falsch.', /* Master Passwort falsch */	
 		configError:'400: Server nicht erreichbar.', /* apiBasic Request Error */
 		connection: '404: Verbindungsprobleme', /* Basis Container can not be loaded */
