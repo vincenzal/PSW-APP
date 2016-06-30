@@ -1,5 +1,5 @@
-<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="at.patientenverwaltung.psw" version="0.9.6">
-  <name>Patientenverwaltung</name>
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="at.patientenverwaltung.psw" version="0.9.7">
+  <name>PS Ordi</name>
   <description>Patienten Software Verwaltungstool</description>
   <author href="http://www.patientenverwaltung.at" email="office@patientenverwaltung.at">Patientenverwaltung Team</author>
   <content src="index.html"/>
@@ -13,7 +13,7 @@
   <plugin name="cordova-plugin-device" source="npm" spec="~1.1.1"/>
   <plugin name="cordova-plugin-file-transfer" source="npm" spec="~1.5.0"/>
   <plugin name="cordova-plugin-camera" source="npm" spec="~2.1.1"/>  
-  
+
   <icon src="images/icon.png"/>
 
   <platform name="ios">
@@ -41,6 +41,15 @@
     <splash src="res/splash/1336x640.png" platform="ios" width="1336" height="640"/>
     <splash src="res/splash/2048x1536.png" platform="ios" width="2048" height="1536"/>
     <splash src="res/splash/2208x1242.png" platform="ios" width="2208" height="1242"/> 
+
+   	<splash src="res/splash/320x480.png" platform="ios" width="320" height="480"/> 
+    <splash src="res/splash/640x960.png" platform="ios" width="640" height="960"/>
+    <splash src="res/splash/640x1136.png" platform="ios" width="640" height="1334"/>
+    <splash src="res/splash/750x1334.png" platform="ios" width="750" height="1334"/>
+    <splash src="res/splash/768x1024.png" platform="ios" width="768" height="1024"/>
+    <splash src="res/splash/1242x2208.png" platform="ios" width="1242" height="2208"/>
+    <splash src="res/splash/1536x2048.png" platform="ios" width="1536" height="2048"/> 
+
 
   </platform>
   

@@ -1,7 +1,7 @@
 (function($){ 
 	"use strict";	
 	
-	var adminObj, appVersion = '0.9.6';
+	var adminObj, appVersion = '0.9.7';
 	var basicLoaded = false; 
 	var htmlBasic = '/basic.php';
 	var cssBasic = '/styles.php';
